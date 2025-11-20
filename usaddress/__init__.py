@@ -7,37 +7,35 @@ import warnings
 import probableparsing
 import pycrfsuite
 
-# The address components are based upon the `United States Thoroughfare,
-# Landmark, and Postal Address Data Standard
-# http://www.urisa.org/advocacy/united-states-thoroughfare-landmark-and-postal-address-data-standard
-
 LABELS = [
     "AddressNumberPrefix",
     "AddressNumber",
     "AddressNumberSuffix",
+
     "StreetNamePreModifier",
     "StreetNamePreDirectional",
     "StreetNamePreType",
     "StreetName",
     "StreetNamePostType",
     "StreetNamePostDirectional",
+
     "SubaddressType",
     "SubaddressIdentifier",
-    "BuildingName",
-    "OccupancyType",
-    "OccupancyIdentifier",
-    "CornerOf",
-    "LandmarkName",
+
+    "POBoxMarker",
+    "POBoxNumber",
+
+    "RRMarker",
+    "RRNumber",
+
     "PlaceName",
-    "StateName",
-    "ZipCode",
-    "USPSBoxType",
-    "USPSBoxID",
-    "USPSBoxGroupType",
-    "USPSBoxGroupID",
-    "IntersectionSeparator",
-    "Recipient",
     "NotAddress",
+
+    "ProvinceName",
+    "ProvinceAbbreviation",
+    "PostalCode",
+    "CountryName",
+    "CountryAbbreviation",
 ]
 
 PARENT_LABEL = "AddressString"
@@ -688,11 +686,6 @@ def tag(address_string: str, tag_mapping=None) -> tuple[dict[str, str], str]:
     og_labels = []
 
     for token, label in parse(address_string):
-        if label == "IntersectionSeparator":
-            is_intersection = True
-        if "StreetName" in label and is_intersection:
-            label = "Second" + label
-
         # saving old label
         og_labels.append(label)
         # map tag to a new tag if tag mapping is provided
@@ -716,12 +709,12 @@ def tag(address_string: str, tag_mapping=None) -> tuple[dict[str, str], str]:
         component = component.strip(" ,;")
         tagged_address[token] = component
 
-    if "AddressNumber" in og_labels and not is_intersection:
+    if "AddressNumber" in og_labels and "StreetName" in og_labels:
         address_type = "Street Address"
-    elif is_intersection and "AddressNumber" not in og_labels:
-        address_type = "Intersection"
-    elif "USPSBoxID" in og_labels:
-        address_type = "PO Box"
+    elif "PostalCode" in og_labels:
+        address_type = "Postal Code"
+    elif "PlaceName" in og_labels and ("ProvinceName" in og_labels or "ProvinceAbbreviation" in og_labels):
+        address_type = "City"
     else:
         address_type = "Ambiguous"
 
@@ -734,7 +727,7 @@ def tokenize(address_string: str) -> list[str]:
     address_string = re.sub("(&#38;)|(&amp;)", "&", address_string)
     re_tokens = re.compile(
         r"""
-    \(*\b[^\s,;#&()]+[.,;)\n]*   # ['ab. cd,ef '] -> ['ab.', 'cd,', 'ef']
+    \(*\b[^\s,;#&()-]+[.,;)\n]*   # ['ab. cd,ef '] -> ['ab.', 'cd,', 'ef']
     |
     [#&]                       # [^'#abc'] -> ['#']
     """,
