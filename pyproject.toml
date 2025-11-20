@@ -1,5 +1,5 @@
 [project]
-name = "usaddress"
+name = "canaddress"
 version = "0.5.16"
 description = "Parse US addresses using conditional random fields"
 readme = "README.md"
@@ -21,10 +21,10 @@ classifiers = [
   "Topic :: Software Development :: Libraries :: Python Modules",
   "Topic :: Scientific/Engineering",
   "Topic :: Scientific/Engineering :: Information Analysis",
-]  
+]
 
 [project.urls]
-Homepage = "https://github.com/datamade/usaddress"
+Homepage = "https://github.com/ZacharyCoumont/canaddress"
 
 [project.optional-dependencies]
 dev = ["pytest",
@@ -41,11 +41,11 @@ build-backend = "setuptools.build_meta"
 
 
 [tool.setuptools.packages.find]
-include = ["usaddress"]
+include = ["canaddress"]
 
 
 [tool.setuptools.package-data]
-usaddress = ['usaddr.crfsuite']
+canaddress = ['canaddr.crfsuite']
 
 
 [tool.pytest.ini_options]
@@ -57,7 +57,7 @@ testpaths = [
   ]
 
 [tool.mypy]
-files = ["usaddress"]
+files = ["canaddress"]
 show_error_codes = true
 ignore_missing_imports = true
 check_untyped_defs = true
@@ -65,4 +65,4 @@ implicit_reexport = false
 
 [tool.isort]
 profile = "black"
-src_paths = ["usaddress", "tests"]
+src_paths = ["canaddress", "tests"]

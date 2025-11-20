@@ -2,7 +2,7 @@ import json
 
 from lxml import etree
 
-from usaddress import tokenize
+from canaddress import tokenize
 
 
 def json2trainingxml(infile, outfile, tagmapping):

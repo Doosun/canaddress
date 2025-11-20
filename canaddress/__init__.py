@@ -41,7 +41,7 @@ LABELS = [
 PARENT_LABEL = "AddressString"
 GROUP_LABEL = "AddressCollection"
 
-MODEL_FILE = "usaddr.crfsuite"
+MODEL_FILE = "canaddr.crfsuite"
 MODEL_PATH = os.path.split(os.path.abspath(__file__))[0] + "/" + MODEL_FILE
 
 DIRECTIONS = {
@@ -819,5 +819,5 @@ def trailingZeros(token):
 
 
 class RepeatedLabelError(probableparsing.RepeatedLabelError):
-    REPO_URL = "https://github.com/datamade/usaddress/issues/new"
+    REPO_URL = "https://github.com/ZacharyCoumont/canaddress/issues/new"
     DOCS_URL = "https://usaddress.readthedocs.io/"

@@ -1,5 +1,7 @@
-usaddress
+canaddress
 =================
+*Note: This project was forked from usaddress, and references may not have been updated.*
+
 usaddress is a Python library for parsing unstructured United States address strings into address components, using advanced NLP methods.
 
 **What this can do:** Using a probabilistic model, it makes (very educated) guesses in identifying address components, even in tricky cases where rule-based parsers typically break down.
@@ -22,7 +24,7 @@ Parserator: Parse and Split Addresses allows you to easily split addresses into 
 1. Install usaddress with [pip](https://pip.readthedocs.io/en/latest/quickstart.html), a tool for installing and managing python packages ([beginner's guide here](http://www.dabapps.com/blog/introduction-to-pip-and-virtualenv-python/)).
 
   In the terminal,
-  
+
   ```bash
   pip install usaddress
   ```
@@ -34,11 +36,11 @@ Parserator: Parse and Split Addresses allows you to easily split addresses into 
   ```python
   import usaddress
   addr='123 Main St. Suite 100 Chicago, IL'
-  
+
   # The parse method will split your address string into components, and label each component.
   # expected output: [(u'123', 'AddressNumber'), (u'Main', 'StreetName'), (u'St.', 'StreetNamePostType'), (u'Suite', 'OccupancyType'), (u'100', 'OccupancyIdentifier'), (u'Chicago,', 'PlaceName'), (u'IL', 'StateName')]
   usaddress.parse(addr)
-  
+
   # The tag method will try to be a little smarter
   # it will merge consecutive components, strip commas, & return an address type
   # expected output: (OrderedDict([('AddressNumber', u'123'), ('StreetName', u'Main'), ('StreetNamePostType', u'St.'), ('OccupancyType', u'Suite'), ('OccupancyIdentifier', u'100'), ('PlaceName', u'Chicago'), ('StateName', u'IL')]), 'Street Address')
@@ -51,19 +53,19 @@ usaddress uses [parserator](https://github.com/datamade/parserator), a library f
 ### Building & testing the code in this repo
 
 To build a development version of usaddress on your machine, run the following code in your command line:
-  
+
   ```
-  git clone https://github.com/datamade/usaddress.git  
-  cd usaddress  
+  git clone https://github.com/datamade/usaddress.git
+  cd usaddress
   pip install -e ."[dev]"
-  ```  
+  ```
 
 Then run the testing suite to confirm that everything is working properly:
 
    ```
    pytest
    ```
-   
+
 Having trouble building the code? [Open an issue](https://github.com/datamade/usaddress/issues/new) and we'd be glad to help you troubleshoot.
 
 ### Adding new training data
@@ -96,7 +98,7 @@ If an address was parsed incorrectly, please let us know! You can either [open a
 If something in the library is not behaving intuitively, it is a bug, and should be reported.
 
 ## Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Send us a pull request. Bonus points for topic branches!

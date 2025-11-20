@@ -1,6 +1,6 @@
 import unittest
 
-from usaddress import tokenize
+from canaddress import tokenize
 
 
 class TestTokenizing(unittest.TestCase):

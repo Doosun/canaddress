@@ -1,6 +1,6 @@
 import unittest
 
-from usaddress import tokenFeatures
+from canaddress import tokenFeatures
 
 
 class TestTokenFeatures(unittest.TestCase):

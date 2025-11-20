@@ -1,7 +1,7 @@
 import pytest
 from parserator.training import readTrainingData
 
-from usaddress import GROUP_LABEL, parse
+from canaddress import GROUP_LABEL, parse
 
 
 # these are simple address patterns
