@@ -819,5 +819,5 @@ def trailingZeros(token):
 
 
 class RepeatedLabelError(probableparsing.RepeatedLabelError):
-    REPO_URL = "https://github.com/ZacharyCoumont/canaddress/issues/new"
+    REPO_URL = "https://github.com/Doosun/canaddress/issues/new"
     DOCS_URL = "https://usaddress.readthedocs.io/"

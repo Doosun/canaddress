@@ -24,7 +24,7 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/ZacharyCoumont/canaddress"
+Homepage = "https://github.com/Doosun/canaddress"
 
 [project.optional-dependencies]
 dev = ["pytest",
